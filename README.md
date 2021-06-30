@@ -1,9 +1,12 @@
 # Helm resource watcher Quick start
-Here is an example of how to 
+This is a toy controller built by kubebuilder that watches a k8s resource managed by Helm. The 
+controller will keep track of the helm application version after it locates the resource. 
+
+It only supports deployment type of resource for now.
 
 ## Download the github repo
 ```shell
-git clone 
+git clone git@github.com:ryanzhang-oss/deployment-watcher.git
 ```
 
 ## Usage example
@@ -23,21 +26,30 @@ spec:
   ResourceName: ryan-test
 ```
 
-3. Apply the object
+3. Install an application through helm
 ```shell
-kubectl apply -f ryan.yaml
+helm repo add podinfo https://stefanprodan.github.io/podinfo
+helm repo update
+helm upgrade --install helmapp podinfo/podinfo --version 5.0.0 --wait
 ```
 
-4. Watch the object status
+4. Apply the watcher object
 ```shell
-kubectl apply -f docs/examples/deployment-rollout/app-rollout-pause.yaml
+kubectl apply -f doc/examples/podinfo.yaml
 ```
-Check the status of the ApplicationRollout and see the step by step rolling out.
-This rollout will pause after the second batch.
 
-6. Apply the application deployment that completes the rollout
+5. Watch the watcher object
 ```shell
-kubectl apply -f docs/examples/deployment-rollout/app-rollout-finish.yaml
+ kubectl get Ryan --watch
+ 
+ NAME           APPVERSION
+helm-watcher   5.0.0
+helm-watcher   5.0.3
+helm-watcher   5.1.1
+ ```
+
+6. Upgrade an application through helm
+```shell
+helm upgrade --install helmapp podinfo/podinfo --version 5.0.3 --wait
+helm upgrade --install helmapp podinfo/podinfo --version 5.1.1 --wait
 ```
-Check the status of the AppRollout and see the rollout completes, and the
-AppRollout's "Rolling State" becomes `rolloutSucceed`
