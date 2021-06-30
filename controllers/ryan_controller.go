@@ -50,7 +50,7 @@ type RyanReconciler struct {
 //+kubebuilder:rbac:groups=practice.shipa.io,resources=ryans,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=practice.shipa.io,resources=ryans/status,verbs=get;update;patch
 //+kubebuilder:rbac:groups=practice.shipa.io,resources=ryans/finalizers,verbs=update
-
+//+kubebuilder:rbac:groups=apps,resources=deployment,verbs=get;list;watch;update;patch
 // Reconcile is part of the main kubernetes reconciliation loop which aims to
 // move the current state of the cluster closer to the desired state.
 func (r *RyanReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
