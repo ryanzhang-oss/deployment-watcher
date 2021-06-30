@@ -1,0 +1,7 @@
+apiVersion: practice.shipa.io/v1alpha1
+kind: Ryan
+metadata:
+  name: ryan-sample
+spec:
+  # Add fields here
+  foo: bar

@@ -1,0 +1,24 @@
+# permissions for end users to edit ryans.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ryan-editor-role
+rules:
+- apiGroups:
+  - practice.shipa.io
+  resources:
+  - ryans
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - practice.shipa.io
+  resources:
+  - ryans/status
+  verbs:
+  - get
