@@ -1,6 +1,6 @@
 apiVersion: practice.shipa.io/v1alpha1
 kind: Ryan
 metadata:
-  name: helm-watcher
+  name: helmapp
 spec:
-  ResourceName: helmapp-podinfo
+  resourceName: helmapp-podinfo

@@ -26,11 +26,7 @@ import (
 // RyanSpec defines the desired state of Ryan
 type RyanSpec struct {
 	// ResourceName is the name of the resource to watch
-	ResourceName string `json:"ResourceName"`
-
-	// ResourceNamespace is the namespace of the resource to watch
-	//+kubebuilder:default="default"
-	ResourceNamespace string `json:"resourceNamespace,omitempty"`
+	ResourceName string `json:"resourceName"`
 
 	// API version of the resource to watch, reserved for future when we support more than just deployment
 	//+kubebuilder:default="apps/v1"
@@ -47,7 +43,7 @@ type RyanStatus struct {
 	ReleaseName string `json:"releaseName"`
 
 	// AppName is the helm app name
-	AppName string `json:"AppName"`
+	AppName string `json:"appName"`
 
 	// AppVersion is the helm app version
 	AppVersion string `json:"appVersion"`
